@@ -7,24 +7,40 @@ import { StyledABBox, StyledCount, ControlsBox, Count, Circle, Button } from "./
 
 // got to be a cleaner way to do this! pass an array and map??
 class AtBatBox extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       strikes: 0,
       balls: 0,
     }
+    this.addOut = props.addOut.bind(this);
   }
 
   addStrike = () => {
+    if (this.state.strikes === 2) {
+      this.addOut();
+      this.reset();
+    }
+    else {
     this.setState((prevState) => {
       return { strikes: prevState.strikes + 1 }
     });
   }
+  }
 
   addBall = () => {
+    if (this.state.balls === 3) {
+      this.reset();
+    }
+    else {
     this.setState((prevState) => {
       return { balls: prevState.balls + 1 }
     });
+  }
+  }
+
+  reset = () => {
+    this.setState({ strikes: 0, balls: 0 });
   }
   
   render() {

@@ -3,10 +3,24 @@ import './App.css';
 import AtBatBox from './components/AtBatBox';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      outs: 0,
+    }
+  }
+
+  addOut = () => {
+    console.log('out!');
+    this.setState((prevState) => {
+      return { outs: prevState.outs + 1 }
+    });
+  }
+
   render() {
     return (
       <div className="App">
-          <AtBatBox strikes={2} balls={2}/>
+          <AtBatBox addOut={this.addOut}/>
       </div>
     );
   }
