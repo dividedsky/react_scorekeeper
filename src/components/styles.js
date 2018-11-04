@@ -25,11 +25,12 @@ export const Count = styled.div`
   '1px solid yellow' : '1px solid red'}
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
   
 export const Circle = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   border: 1px solid black;
   border-radius: 50%;
   background-color: ${props => props.filled ? 'orange': 'white'}
@@ -42,5 +43,14 @@ export const ControlsBox = styled.div`
   justify-content: space-around;
   border: 1px solid green;
   margin: 10px auto;
+  align-items: center;
 `;
 
+export const Button = styled.button`
+  padding: 10px;
+  border: 1px solid red;
+
+  &:hover {
+    filter: invert(100%);
+  }
+`;
