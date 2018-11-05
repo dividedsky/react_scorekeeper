@@ -12,31 +12,29 @@ class AtBatBox extends React.Component {
     this.state = {
       strikes: 0,
       balls: 0,
+      outs: Array(props.outs).fill(<Circle filled />),
     }
     this.addOut = props.addOut.bind(this);
+    console.log(this.state.outs);
   }
 
   addStrike = () => {
-    if (this.state.strikes === 2) {
-      this.addOut();
-      this.reset();
-    }
-    else {
     this.setState((prevState) => {
       return { strikes: prevState.strikes + 1 }
     });
+    if (this.state.strikes === 2) {
+      this.addOut();
+      setTimeout(this.reset, 800);
   }
   }
 
   addBall = () => {
-    if (this.state.balls === 3) {
-      this.reset();
-    }
-    else {
     this.setState((prevState) => {
       return { balls: prevState.balls + 1 }
     });
-  }
+    if (this.state.balls === 3) {
+      setTimeout(this.reset, 800);
+    }
   }
 
   reset = () => {
@@ -63,6 +61,7 @@ class AtBatBox extends React.Component {
     ballDisplay.push(<Circle />);
   }
 
+
   return (
     <StyledABBox>
       <StyledCount>
@@ -71,6 +70,7 @@ class AtBatBox extends React.Component {
       </StyledCount>
       <ControlsBox>
         <Button onClick={this.addStrike}>Strike</Button>
+        {this.state.outs}
         <Button onClick={this.addBall}>Ball</Button>
         </ControlsBox>
     </StyledABBox>
