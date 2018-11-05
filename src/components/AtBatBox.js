@@ -45,6 +45,7 @@ class AtBatBox extends React.Component {
   let strikeDisplay = [];
   let ballDisplay = [];
 
+  const outs = Array(this.props.outs).fill(<Circle filled />);
   for (let i = 0; i < this.state.strikes; i++) {
     strikeDisplay.push(<Circle filled />);
   }
@@ -70,7 +71,7 @@ class AtBatBox extends React.Component {
       </StyledCount>
       <ControlsBox>
         <Button onClick={this.addStrike}>Strike</Button>
-        {this.state.outs}
+        {outs}
         <Button onClick={this.addBall}>Ball</Button>
         </ControlsBox>
     </StyledABBox>
