@@ -1,5 +1,13 @@
 import React from "react";
-import { StyledABBox, StyledCount, ControlsBox, Count, Circle, Button } from "./styles";
+import {
+  StyledABBox,
+  StyledCount,
+  ControlsBox,
+  Count,
+  Circle,
+  Button,
+  OutCounter
+} from "./styles";
 
 // props include AtBat object (lives in state) that contains balls, strikes, outs
 // no need to keep batter or pitcher in at bat?
@@ -12,71 +20,69 @@ class AtBatBox extends React.Component {
     this.state = {
       strikes: 0,
       balls: 0,
-      outs: Array(props.outs).fill(<Circle filled />),
-    }
+      outs: Array(props.outs).fill(<Circle filled />)
+    };
     this.addOut = props.addOut.bind(this);
-    console.log(this.state.outs);
   }
 
   addStrike = () => {
-    this.setState((prevState) => {
-      return { strikes: prevState.strikes + 1 }
+    this.setState(prevState => {
+      return { strikes: prevState.strikes + 1 };
     });
     if (this.state.strikes === 2) {
       this.addOut();
       setTimeout(this.reset, 800);
-  }
-  }
+    }
+  };
 
   addBall = () => {
-    this.setState((prevState) => {
-      return { balls: prevState.balls + 1 }
+    this.setState(prevState => {
+      return { balls: prevState.balls + 1 };
     });
     if (this.state.balls === 3) {
       setTimeout(this.reset, 800);
     }
-  }
+  };
 
   reset = () => {
     this.setState({ strikes: 0, balls: 0 });
-  }
-  
+  };
+
   render() {
-  let strikeDisplay = [];
-  let ballDisplay = [];
+    let strikeDisplay = [];
+    let ballDisplay = [];
 
-  const outs = Array(this.props.outs).fill(<Circle filled />);
-  for (let i = 0; i < this.state.strikes; i++) {
-    strikeDisplay.push(<Circle filled />);
-  }
+    const outs = Array(this.props.outs).fill(<Circle filled />);
+    for (let i = 0; i < this.state.strikes; i++) {
+      strikeDisplay.push(<Circle filled />);
+    }
 
-  for (let i = strikeDisplay.length; i < 3; i++) {
-    strikeDisplay.push(<Circle />);
-  }
+    for (let i = strikeDisplay.length; i < 3; i++) {
+      strikeDisplay.push(<Circle />);
+    }
 
-  for (let i = 0; i < this.state.balls; i++) {
-    ballDisplay.push(<Circle filled />);
-  }
+    for (let i = 0; i < this.state.balls; i++) {
+      ballDisplay.push(<Circle filled />);
+    }
 
-  for (let i = ballDisplay.length; i < 4; i++) {
-    ballDisplay.push(<Circle />);
-  }
+    for (let i = ballDisplay.length; i < 4; i++) {
+      ballDisplay.push(<Circle />);
+    }
 
-
-  return (
-    <StyledABBox>
-      <StyledCount>
-        <Count strikeCount>{strikeDisplay}</Count>
-        <Count>{ballDisplay}</Count>
-      </StyledCount>
-      <ControlsBox>
-        <Button onClick={this.addStrike}>Strike</Button>
-        {outs}
-        <Button onClick={this.addBall}>Ball</Button>
+    return (
+      <StyledABBox>
+        <StyledCount>
+          <Count strikeCount>{strikeDisplay}</Count>
+          <Count>{ballDisplay}</Count>
+        </StyledCount>
+        <ControlsBox>
+          <Button onClick={this.addStrike}>Strike</Button>
+          <OutCounter>{outs}</OutCounter>
+          <Button onClick={this.addBall}>Ball</Button>
         </ControlsBox>
-    </StyledABBox>
-  );
-};
+      </StyledABBox>
+    );
+  }
 }
 
 export default AtBatBox;

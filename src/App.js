@@ -11,7 +11,6 @@ class App extends Component {
   }
 
   addOut = () => {
-    console.log("out!");
     this.setState(prevState => {
       return { outs: prevState.outs + 1 };
     });

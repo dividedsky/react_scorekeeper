@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledABBox = styled.div`
   width: 800px;
@@ -8,7 +8,6 @@ export const StyledABBox = styled.div`
   flex-direction: column;
   margin: 10px auto;
 `;
-
 
 export const StyledCount = styled.div`
   width: 90%;
@@ -21,20 +20,23 @@ export const StyledCount = styled.div`
 
 export const Count = styled.div`
   width: 45%;
-  border: ${props => props.strikeCount ? 
-  '1px solid yellow' : '1px solid red'}
+  border: ${props => (props.strikeCount ? "1px solid yellow" : "1px solid red")}
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-  
+
+export const OutCounter = styled.div`
+  display: flex;
+`;
+
 export const Circle = styled.div`
   width: 20px;
   height: 20px;
   border: 1px solid black;
   border-radius: 50%;
-  background-color: ${props => props.filled ? 'orange': 'white'}
-  `;
+  background-color: ${props => (props.filled ? "orange" : "white")};
+`;
 
 export const ControlsBox = styled.div`
   width: 90%;
